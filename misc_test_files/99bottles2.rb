@@ -1,0 +1,1 @@
+(0..25).reverse_each { |i| print i.to_s + 'bottles of beer on the wall' + '\n'}

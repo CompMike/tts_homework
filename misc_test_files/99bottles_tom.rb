@@ -1,0 +1,2 @@
+99.downto(2)  {|n| puts "#{n} bottles of beer on the wall.\n#{n} bottles of beer! \ntake one down, pass it around #{n-1} bottles of beer on the wall! \n <--->"
+puts "1 bottle of beer on the wall. 1 bottle of beer. take one down pass it around and damnit we're out of beer."}
