@@ -10,7 +10,7 @@ score = 0 #running count of score
 questions.each do |q|
 	puts q[0]
 	answer = gets.chomp
-	while answer.upcase != "Y" and answer.upcase != "N" do
+	while answer.upcase != "Y" && answer.upcase != "N" do
 		puts "Please enter Y or N only"
 		answer = gets.chomp
 	end
