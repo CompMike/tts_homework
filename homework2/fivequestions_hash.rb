@@ -6,7 +6,7 @@ puts "Instructions: \nAnswer all questions with Y or N, your score will be outpu
 #define the questions and the answers
 questions = {"Is the sky blue?" => "Y", "Is it summer?"=>"Y","Is the Whitehouse green?"=>"N","Is this a great day?"=>"N","Is it good to be alive?"=>"N"}
 score = 0 #running count of score
-wrong = []
+wrong = [] #an array that holds the incorrect answers
 #output questions and collect the answer
 questions.each do |q, a|
 	puts q
@@ -22,7 +22,9 @@ questions.each do |q, a|
 	end
 end
 puts "Your score: #{score} out of #{questions.length}"
-puts "These questions were wrong?"
-puts wrong.join("\n")
+unless wrong.empty?
+	puts "These questions were wrong?"
+	puts wrong.join("\n")
+end
 
 
