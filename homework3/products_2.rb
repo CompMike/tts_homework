@@ -6,14 +6,13 @@ if File.exists?("inventory.json")
 	$products = JSON.load(json_file)
 end
 
-# $products = {'banana' => [4,'fruit'], 'carrot' => [10,'vegatable'], 'apple'=>[48, 'fruit']}
 #Create an introduction to our program
 puts "Welcome to Inventory Master 3000"
 #Ask user what they would like to do. 1) view current inventory 2) Add to existing product 3) create new product and add to it
-puts "What would you like to do?\n1.) View Current Inventory?\n2.) Modify an existing product?\n3.) Add a new product?"
+puts "What would you like to do?\n1.) View Current Inventory?\n2.) Modify an existing product?\n3.) Add a new product?\n4.) Delete a product?"
 menu_choice = gets.chomp
 #check if input is valid
-while menu_choice != "1" && menu_choice != "2" && menu_choice != "3"
+while menu_choice != "1" && menu_choice != "2" && menu_choice != "3" && menu_choice != "4"
 	puts "Please enter either 1,2 or 3."
 	puts "What would you like to do?\n1.) View Current Inventory?\n2.) Modify an existing product?\n3.) Add a new product?"
 	menu_choice = gets.chomp
@@ -54,6 +53,7 @@ elsif menu_choice =="2"
 			puts "That isn't a current product number, please try again..."
 			mod_product
 		end
+		puts "Would you like to Modify the quantity or public? "
 		puts "What's the current quantity for this product?"
 		new_count = gets.chomp
 		products_array = $products.to_a
@@ -84,6 +84,15 @@ elsif menu_choice =="3"
 	$products[new_product][1] = gets.chomp
 	puts "New Product Added"
 	print_products
+elsif menu_choice == "4"
+	puts "What product would you like to delete?"
+	print_products
+	product_to_delete = gets.chomp
+	puts "Are you sure? **Warning this action is permanent.**\nType \"DELETE\" to confirm or \"CANCEL\" to go back to main menu."
+	confirm_delete = gets.chomp
+	if confirm_delete == "DELETE"
+		$products.delete(product_to_delete.downcase)
+	end
 end
 #Save File before closing program
 	output_file = File.open("inventory.json", "w")
