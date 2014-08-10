@@ -1,6 +1,12 @@
 #prompt
 #Creae an inventory program that allows adding new products, categorizing the products and prints out the current inventory
-$products = {'banana' => [4,'fruit'], 'carrot' => [10,'vegatable'], 'apple'=>[48, 'fruit']}
+require 'json'
+if File.exists?("inventory.json")
+	json_file = File.open("inventory.json", "r")
+	$products = JSON.load(json_file)
+end
+
+# $products = {'banana' => [4,'fruit'], 'carrot' => [10,'vegatable'], 'apple'=>[48, 'fruit']}
 #Create an introduction to our program
 puts "Welcome to Inventory Master 3000"
 #Ask user what they would like to do. 1) view current inventory 2) Add to existing product 3) create new product and add to it
@@ -79,3 +85,7 @@ elsif menu_choice =="3"
 	puts "New Product Added"
 	print_products
 end
+#Save File before closing program
+	output_file = File.open("inventory.json", "w")
+	JSON.dump($products, output_file)
+	output_file.close
