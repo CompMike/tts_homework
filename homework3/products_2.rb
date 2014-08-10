@@ -51,7 +51,7 @@ elsif menu_choice =="2"
 		puts "What's the current quantity for this product?"
 		new_count = gets.chomp
 		products_array = $products.to_a
-		products_array[get_product.to_i - 1][1][0] = new_count
+		products_array[$get_product.to_i - 1][1][0] = new_count
 		$products = products_array.to_h
 	else
 		while !$products.has_key?($get_product)
