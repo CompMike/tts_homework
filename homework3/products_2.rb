@@ -12,9 +12,10 @@ puts "Welcome to Inventory Master 3000"
 puts "What would you like to do?\n1.) View Current Inventory?\n2.) Modify an existing product?\n3.) Add a new product?\n4.) Delete a product?"
 menu_choice = gets.chomp
 #check if input is valid
+# while menu_choice === !(1..4)
 while menu_choice != "1" && menu_choice != "2" && menu_choice != "3" && menu_choice != "4"
-	puts "Please enter either 1,2 or 3."
-	puts "What would you like to do?\n1.) View Current Inventory?\n2.) Modify an existing product?\n3.) Add a new product?"
+	puts "Please enter either 1,2,3 or 4."
+	puts "What would you like to do?\n1.) View Current Inventory?\n2.) Modify an existing product?\n3.) Add a new product?\n4.) Delete a product?"
 	menu_choice = gets.chomp
 end
 #method that prints out current products
@@ -74,7 +75,7 @@ elsif menu_choice =="2"
 elsif menu_choice =="3"
 	#Ask name of new product?
 	puts "Enter new product name:"
-	new_product = gets.chomp
+	new_product = gets.chomp.downcase
 	#create array to hold quantity and category
 	$products[new_product] = []
 	#Add how many to add to new product
@@ -85,14 +86,18 @@ elsif menu_choice =="3"
 	puts "New Product Added"
 	print_products
 elsif menu_choice == "4"
-	puts "What product would you like to delete?"
 	print_products
+	puts "What product would you like to delete?"
 	product_to_delete = gets.chomp
-	puts "Are you sure? **Warning this action is permanent.**\nType \"DELETE\" to confirm or \"CANCEL\" to go back to main menu."
+	puts "Are you sure? **Warning this action is permanent.**\nType \"DELETE\" to confirm. Or type CTRL + C to cancel"
 	confirm_delete = gets.chomp
 	if confirm_delete == "DELETE"
 		$products.delete(product_to_delete.downcase)
+		puts "#{product_to_delete} was deleted."
+	else
+		puts "DELETE wasn't entered...ending program"
 	end
+
 end
 #Save File before closing program
 	output_file = File.open("inventory.json", "w")
